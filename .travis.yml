@@ -15,6 +15,7 @@ script:
   - tar xf eaglemode*.tar.bz2
   - cd eaglemode-*/
   - perl make.pl build
+  - mkdir appdir/usr/lib/eaglemode
   - perl make.pl install dir=$(readlink -f appdir/usr/lib/eaglemode)
   - cd appdir/usr/lib/eaglemode
   - mv -T doc ../../share/doc/eaglemode
