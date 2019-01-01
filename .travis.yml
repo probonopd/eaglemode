@@ -1,0 +1,33 @@
+language: cpp
+compiler: gcc
+sudo: require
+dist: trusty
+
+before_install:
+  - sudo add-apt-repository ppa:beineri/opt-qt593-trusty -y
+  - sudo apt-get update -qq
+
+install:
+  - sudo apt-get -y install perl libx11-dev libjpeg-dev libpng-dev libtiff5-dev librsvg2-dev libpoppler-glib-dev libgtk2.0-dev 
+  
+script:
+  - wget https://sourceforge.net/projects/eaglemode/files/latest/download
+  - perl make.pl build
+  - perl make.pl install dir=$(readlink -f appdir/usr/lib/eaglemode)
+  - cd appdir/usr/lib/eaglemode
+  - mv -T doc ../../share/doc/eaglemode
+  - ln -s ../../share/doc/eaglemode doc
+  - mv -T res ../../share/eaglemode
+  - ln -s ../../share/eaglemode res
+  - mv -T etc /etc/eaglemode
+  - ln -s /etc/eaglemode etc
+  - cd -
+  - cd appdir//usr/bin
+  - ln -s ../lib/eaglemode/eaglemode.sh eaglemode
+  - cd -
+  - cd appdir//usr/lib
+  - ln -s eaglemode/lib/*.so .
+  - cd -
+  - cd appdir/usr/include
+  - ln -s ../lib/eaglemode/include/* .
+  - cd -
