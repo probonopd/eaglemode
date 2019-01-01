@@ -11,7 +11,9 @@ install:
   - sudo apt-get -y install perl libx11-dev libjpeg-dev libpng-dev libtiff5-dev librsvg2-dev libpoppler-glib-dev libgtk2.0-dev 
   
 script:
-  - wget https://sourceforge.net/projects/eaglemode/files/latest/download
+  - wget https://sourceforge.net/projects/eaglemode/files/latest/download --trust-server-names
+  - tar xf eaglemode*.tar.bz2
+  - cd eaglemode-*/
   - perl make.pl build
   - perl make.pl install dir=$(readlink -f appdir/usr/lib/eaglemode)
   - cd appdir/usr/lib/eaglemode
