@@ -16,6 +16,8 @@ script:
   - cd eaglemode-*/
   - perl make.pl build
   - mkdir -p appdir/usr/lib/eaglemode
+  - cp ../AppRun appdir/
+  - chmod +x appdir/AppRun
   - perl make.pl install dir=$(readlink -f appdir/usr/lib/eaglemode)
   - cd appdir/usr/lib/eaglemode
   - mkdir -p ../../share/doc/eaglemode
@@ -37,6 +39,7 @@ script:
   - cd appdir/usr/include
   - ln -s ../lib/eaglemode/include/* .
   - cd -
+  - ( cd appdir/usr/lib/eaglemode ; mkdir -p res/ ; cd res/ ; ln -s ../../../share/eaglemode/ . )
   - mkdir -p appdir/usr/share/applications/
   - cp ../eaglemode.desktop appdir/usr/share/applications/
   - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/
