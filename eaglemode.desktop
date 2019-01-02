@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Eagle Mode
+Exec=eaglemode
+Icon=eaglemode
+Comment=Zoomable user interface with plugin applications
+Terminal=false
+Type=Application
+Categories=System;FileManager;
+StartupNotify=true
