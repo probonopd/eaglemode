@@ -27,7 +27,7 @@ script:
   - cd -
   - mkdir -p appdir/usr/bin
   - cd appdir/usr/bin
-  - ln -s ../lib/eaglemode/eaglemode eaglemode
+  - ln -s ../lib/eaglemode/bin/eaglemode eaglemode
   - cd -
   - mkdir -p appdir/usr/lib
   - cd appdir/usr/lib
