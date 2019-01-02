@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# eaglemode currently relies on EM_DIR to find its resources.
+# The need for this environment variable should be removed by using a path
+# relative to the main executable itself, e.g.,. by looking at 2readlink /proc/self/exe".
+# In the meantime, this script can be used.
+
+HERE="$(dirname "$(readlink -f "${0}")")"
+EM_DIR="${HERE}/usr/lib/eaglemode/" exec "${HERE}/usr/bin/eaglemode" "$@"
