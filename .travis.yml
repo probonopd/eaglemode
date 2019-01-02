@@ -43,6 +43,7 @@ script:
   - touch appdir/usr/share/icons/hicolor/scalable/apps/eaglemode.svg # FIXME
   - cp ../eaglemode.desktop appdir/usr/share/applications/
   - find appdir/
+  - cat appdir/usr/bin/eaglemode # FIXME
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
