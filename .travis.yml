@@ -18,19 +18,22 @@ script:
   - mkdir -p appdir/usr/lib/eaglemode
   - perl make.pl install dir=$(readlink -f appdir/usr/lib/eaglemode)
   - cd appdir/usr/lib/eaglemode
+  - mkdir -p ../../share/doc/eaglemode
   - mv -T doc ../../share/doc/eaglemode
   - ln -s ../../share/doc/eaglemode doc
+  - mkdir -p ../../share/eaglemode
   - mv -T res ../../share/eaglemode
   - ln -s ../../share/eaglemode res
-  - mv -T etc /etc/eaglemode
-  - ln -s /etc/eaglemode etc
   - cd -
-  - cd appdir//usr/bin
+  - mkdir -p appdir/usr/bin
+  - cd appdir/usr/bin
   - ln -s ../lib/eaglemode/eaglemode.sh eaglemode
   - cd -
-  - cd appdir//usr/lib
+  - mkdir -p appdir/usr/lib
+  - cd appdir/usr/lib
   - ln -s eaglemode/lib/*.so .
   - cd -
+  - mkdir -p appdir/usr/include
   - cd appdir/usr/include
   - ln -s ../lib/eaglemode/include/* .
   - cd -
