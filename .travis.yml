@@ -37,3 +37,25 @@ script:
   - cd appdir/usr/include
   - ln -s ../lib/eaglemode/include/* .
   - cd -
+  - mkdir -p appdir/usr/share/applications/
+  - cp ../eaglemode.desktop appdir/usr/share/applications/
+  - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/
+  - touch appdir/usr/share/icons/hicolor/scalable/apps/eaglemode.svg # FIXME
+  - cp ../eaglemode.desktop appdir/usr/share/applications/
+  - find appdir/
+  - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+  - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+  - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
+  - export VERSION=$(git rev-parse --short HEAD) # linuxdeployqt uses this for naming the file
+  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+
+after_success:
+  - find appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
+  - # curl --upload-file Eagle*.AppImage https://transfer.sh/Eagle_Mode-git.$(git rev-parse --short HEAD)-x86_64.AppImage
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh Eagle*.AppImage*
+  
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)/
