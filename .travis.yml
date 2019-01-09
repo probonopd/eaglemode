@@ -50,7 +50,42 @@ script:
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - unset QTDIR; unset QT_PLUGIN_PATH ; unset LD_LIBRARY_PATH
   - export VERSION=$(git rev-parse --short HEAD) # linuxdeployqt uses this for naming the file
-  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+  - |
+    ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage \
+    -executable=appdir/usr/lib/eaglemode/lib/libemAv.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemBmp.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemClock.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemCore.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemFileMan.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemFractal.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemGif.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemIlbm.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemJpeg.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemMines.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemNetwalk.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemPcx.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemPdf.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemPng.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemPnm.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemPs.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemRas.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemRgb.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemSvg.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemTestPanel.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemText.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemTga.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemTiff.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemTmpConv.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemTreeDump.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemX11.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemXbm.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libemXpm.so \
+    -executable=appdir/usr/lib/eaglemode/lib/libSilChess.so \
+    -executable=appdir/usr/lib/eaglemode/lib/emAv/emAvServerProc_xine \
+    -executable=appdir/usr/lib/eaglemode/lib/emClock/emTimeZonesProc \
+    -executable=appdir/usr/lib/eaglemode/lib/emPdf/emPdfServerProc \
+    -executable=appdir/usr/lib/eaglemode/lib/emSvg/emSvgServerProc \
+    -executable=appdir/usr/lib/eaglemode/lib/emTmpConv/emTmpConvProc 
 
 after_success:
   - find appdir -executable -type f -exec ldd {} \; | grep " => /usr" | cut -d " " -f 2-3 | sort | uniq
