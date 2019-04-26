@@ -42,8 +42,8 @@ script:
   - ( cd appdir/usr/lib/eaglemode ; mkdir -p res/ ; cd res/ ; ln -s ../../../share/eaglemode/ . )
   - mkdir -p appdir/usr/share/applications/
   - cp ../eaglemode.desktop appdir/usr/share/applications/
-  - mkdir -p appdir/usr/share/icons/hicolor/scalable/apps/
-  - touch appdir/usr/share/icons/hicolor/scalable/apps/eaglemode.svg # FIXME
+  - mkdir -p appdir/usr/share/icons/hicolor/48x48/apps/
+  - cp ./res/icons/eaglemode48.png appdir/usr/share/icons/hicolor/48x48/apps/eaglemode.png
   - cp ../eaglemode.desktop appdir/usr/share/applications/
   - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
